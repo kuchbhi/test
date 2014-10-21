@@ -83,6 +83,9 @@ function mainFunction() {
 
 	console.log("\n====== RESULT ======");
 
+	// Remove redundant pairs
+	var finalResult = {};
+
 	//Smart looping choice : oHashList will always be smaller than oHashSumList
 	for (var key in oHashList) {
         if (oHashList.hasOwnProperty(key)) {
@@ -91,8 +94,13 @@ function mainFunction() {
         		// This for loop is just syntactic sugar to print result in readable format
         		for(var i = 0; i < oHashSumList[-(key)].length; i++) {
         			//Skip for repetitive results
-        			if(oHashList[key] != oHashSumList[-(key)][i][0] && oHashList[key] != oHashSumList[-(key)][i][1])
-        				console.log("Triplet found : " + oHashSumList[-(key)][i] +','+ oHashList[key]);
+        			if(oHashList[key] != oHashSumList[-(key)][i][0] && oHashList[key] != oHashSumList[-(key)][i][1]) {
+        				var sortedResult = [oHashSumList[-(key)][i][0], oHashSumList[-(key)][i][1], oHashList[key]];
+        				sortedResult = sortedResult.sort();
+        				sortedResult = sortedResult.join();
+        				finalResult.sortedResult = sortedResult;
+        				//console.log("Triplet found : " + oHashSumList[-(key)][i] +','+ oHashList[key]);
+        			}
         		}
         		flagResult = "Result : found";
         	}
@@ -100,6 +108,8 @@ function mainFunction() {
     }
     if(flagResult != "Result : found") {
     	console.log(flagResult);
+    } else {
+    	console.dir(finalResult);
     }
 
 }

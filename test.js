@@ -90,7 +90,9 @@ function mainFunction() {
         	if(oHashSumList[-(key)] != undefined) {
         		// This for loop is just syntactic sugar to print result in readable format
         		for(var i = 0; i < oHashSumList[-(key)].length; i++) {
-        			console.log("Triplet found : " + oHashSumList[-(key)][i] +','+ oHashList[key]);
+        			//Skip for repetitive results
+        			if(oHashList[key] != oHashSumList[-(key)][i][0] && oHashList[key] != oHashSumList[-(key)][i][1])
+        				console.log("Triplet found : " + oHashSumList[-(key)][i] +','+ oHashList[key]);
         		}
         		flagResult = "Result : found";
         	}

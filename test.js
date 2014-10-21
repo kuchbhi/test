@@ -65,7 +65,7 @@ function createHashSumList(arr) {
 function mainFunction() {
 	// NOTE : id of each entry has to be unique
 	// Value may be same
-	var sample = [{id : 'r37x',value :-1}, {id : '3dat',value :3}, {id : 'yy15',value :-2}, {id : 'map7',value :1}];
+	var sample = [{id : 'r37x',value :1}, {id : '3dat',value :3}, {id : 'yy15',value :-2}, {id : 'map7',value :-1}, {id : 'm8p1',value :2}, {id : 'tap3',value :-4}];
 	var flagResult = "Result : not found";
 	//Sample is provided
 	console.log("You have entered : ");
@@ -97,9 +97,10 @@ function mainFunction() {
         			if(oHashList[key] != oHashSumList[-(key)][i][0] && oHashList[key] != oHashSumList[-(key)][i][1]) {
         				var sortedResult = [oHashSumList[-(key)][i][0], oHashSumList[-(key)][i][1], oHashList[key]];
         				sortedResult = sortedResult.sort();
-        				sortedResult = sortedResult.join();
-        				finalResult.sortedResult = sortedResult;
-        				//console.log("Triplet found : " + oHashSumList[-(key)][i] +','+ oHashList[key]);
+        				var tmp = sortedResult.join('_');
+                        sortedResult = sortedResult.join();
+        				finalResult[tmp] = sortedResult;
+                        sortedResult = null;
         			}
         		}
         		flagResult = "Result : found";

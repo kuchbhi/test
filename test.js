@@ -65,7 +65,7 @@ function createHashSumList(arr) {
 function mainFunction() {
 	// NOTE : id of each entry has to be unique
 	// Value may be same
-	var sample = [{id : 'r37x',value :1}, {id : '3dat',value :3}, {id : 'yy15',value :-2}, {id : 'map7',value :-1}, {id : 'm8p1',value :2}, {id : 'tap3',value :-4}];
+	var sample = [{id : 'r37x',value :0}, {id : '3dat',value :3}, {id : 'yy15',value :-2}, {id : 'map7',value :-3}, {id : 'm8p1',value :-1}, {id : 'tap3',value :3}];
 	var flagResult = "Result : not found";
 	//Sample is provided
 	console.log("You have entered : ");
@@ -91,11 +91,13 @@ function mainFunction() {
         if (oHashList.hasOwnProperty(key)) {
         	//Note : hasOwnProperty() has complexity of O(1)
         	if(oHashSumList[-(key)] != undefined) {
-        		// This for loop is just syntactic sugar to print result in readable format
+        		// This loop's will run atmost n times (n = length of array)
         		for(var i = 0; i < oHashSumList[-(key)].length; i++) {
-        			//Skip for repetitive results
+        			// Skip for repetitive results, triplet should not have same entities repeated at all
         			if(oHashList[key] != oHashSumList[-(key)][i][0] && oHashList[key] != oHashSumList[-(key)][i][1]) {
-        				var sortedResult = [oHashSumList[-(key)][i][0], oHashSumList[-(key)][i][1], oHashList[key]];
+        				// Remove permutations : Sorting is being used to eliminate redundant combinations
+        				// This adds to complexity : TODO !! 
+        				var sortedResult = [oHashSumList[-(key)][i][0], oHashSumList[-(key)][i][1], oHashList[key][0]];
         				sortedResult = sortedResult.sort();
         				var tmp = sortedResult.join('_');
                         sortedResult = sortedResult.join();
